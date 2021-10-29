@@ -1,7 +1,9 @@
+import { useState } from 'react';
+import AddExpense from './components/add-expense/AddExpense';
 import ExpenseList from './components/expenses/ExpenseList';
 
 function App() {
-    const expenses = [
+    const [expenses, setExpenses] = useState([
         {
           id: 'e1',
           title: 'Toilet Paper',
@@ -21,11 +23,23 @@ function App() {
           amount: 450,
           date: new Date(2021, 5, 12),
         },
-    ];
+    ]);
+
+    const addExpenseHandler = (expense) => {
+        setExpenses(prev => {
+            expense.id = 'e' + (prev.length + 1);
+            return [...prev, expense];
+        })
+    }
+
+    const removeExpense = (item) => {
+        setExpenses(prev => prev.filter(expense => expense.id !== item.id));
+    }
 
     return (
         <div>
-            <ExpenseList expenses={expenses} />
+            <AddExpense onAddExpense={addExpenseHandler}/>
+            <ExpenseList expenses={expenses} remove={removeExpense}/>
         </div>
     );
 }
