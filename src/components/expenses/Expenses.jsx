@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import Card from '../wrappers/Card';
 import ExpensesFilter from './ExpenseFilter';
-import ExpenseItem from './ExpenseItem';
-import './ExpenseList.css';
+import './Expenses.css';
+import ExpensesChart from './ExpensesChart';
+import ExpensesList from './ExpensesList';
 
-function ExpenseList(props) {
+function Expenses(props) {
     const [selectedYear, setSelectedYear] = useState('2021');
 
-    let listOfExpenses = [];
-
-    props.expenses.forEach((expense, index) => {
-        listOfExpenses.push(<ExpenseItem key={index} item={expense} remove={props.remove}/>);
-    });
+    let filteredExpenses = props.expenses.filter(expense => expense.date.getFullYear().toString() === selectedYear);
 
     const yearChangeHandler = ({target}) => {
         console.log(target.value);
@@ -20,11 +17,11 @@ function ExpenseList(props) {
 
     return (
         <Card className='expenses'>
-            <h2>Selected year: {selectedYear}</h2>
             <ExpensesFilter yearChange={yearChangeHandler} selectedYear={selectedYear}/>
-            {listOfExpenses}
+            <ExpensesChart expenses={filteredExpenses} />
+            <ExpensesList expenses={filteredExpenses} />
         </Card>
     );
 }
 
-export default ExpenseList;
+export default Expenses;
