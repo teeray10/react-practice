@@ -1,3 +1,4 @@
+import Button from '../UI/Button';
 import styles from './AddUserForm.module.css';
 
 function AddUserForm(props) {
@@ -11,7 +12,7 @@ function AddUserForm(props) {
                 <label>Age</label>
                 <input type="number" />
             </div>
-            <button type="submit">Add User</button>
+            <Button type="submit" text="Add User" />
         </form>
     );
 }
