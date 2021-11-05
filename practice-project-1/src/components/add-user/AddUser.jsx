@@ -1,5 +1,9 @@
+import AddUserForm from './AddUserForm';
+
 function AddUser(props) {
-    return null;
+    return (
+        <AddUserForm />
+    );
 }
 
 export default AddUser;
