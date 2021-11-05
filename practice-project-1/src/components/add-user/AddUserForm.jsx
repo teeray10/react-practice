@@ -1,11 +1,13 @@
+import styles from './AddUserForm.module.css';
+
 function AddUserForm(props) {
     return (
         <form>
-            <div>
+            <div className={styles.input}>
                 <label>Username</label>
                 <input type="text" />
             </div>
-            <div>
+            <div className={styles.input}>
                 <label>Age</label>
                 <input type="number" />
             </div>
