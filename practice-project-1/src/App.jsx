@@ -4,15 +4,15 @@ import AddUser from './components/add-user/AddUser';
 import UserList from './components/users/UserList';
 
 function App() {
-    const [userList, setUserList] = useState([]);
+    const [users, setUsers] = useState([]);
     const addUserHandler = (user) => {
-        setUserList(prev => [...prev, user]);
+        setUsers(prev => [...prev, user]);
     }
 
     return (
         <div>
             <AddUser addUser={addUserHandler} />
-            <UserList />
+            <UserList users={users} />
         </div>
     );
 }
